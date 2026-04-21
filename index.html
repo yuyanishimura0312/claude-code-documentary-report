@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>80のアプリが生まれた場所 ── AIと人間の協働が拓く未来創造の記録</title>
+  <title>3週間で126のプロジェクトが生まれた場所 ── AIと人間の協働が拓く未来創造の記録</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='50%25' y='55%25' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='20' fill='white'>e</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -266,6 +266,31 @@
       letter-spacing: 0.03em;
     }
 
+    /* Figure / Screenshot */
+    .article figure {
+      margin: 40px -32px;
+      padding: 0;
+    }
+    .article figure img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+    .article figure figcaption {
+      font-size: 12px;
+      color: var(--text-3);
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.6;
+      padding: 0 32px;
+    }
+    @media (max-width: 640px) {
+      .article figure { margin: 32px 0; }
+      .article figure figcaption { padding: 0; }
+    }
+
     /* Footer */
     .footer {
       max-width: 700px;
@@ -387,6 +412,11 @@
 
     <p>妖怪SNSの着想は、家族旅行の帰り道の車中で生まれた。夕方、運転しながらふと思いついた構想を帰り道の中で膨らませ、帰宅してから作り始め、翌朝にはプロトタイプが動き始めた。娘の意見を取り入れて具体的に動き出したのが、その日の夜だった。そこから改善とアップデートを繰り返し、1,010体の妖怪データベース、34のデータソース、70,000行のコードを持つシステムへと成長した。</p>
 
+    <figure>
+      <img src="img-yokai-sns.png" alt="妖怪百景 ── 1,010体の妖怪が自律的に対話するSNS" loading="lazy">
+      <figcaption>妖怪百景（Yokai Hyakkei）── 1,010体の妖怪がリアルタイムの気象・環境データに反応し、固有の環世界から自律的に対話する</figcaption>
+    </figure>
+
     <p>人類学の中では、妖怪は自然と人の媒介者として理解されてきた。フィリップ・デスコラの存在論的4類型にもその位置づけがある。AIエージェント同士が自律的に会話する「オルタナティブなSNS」を見たとき、西村は「AI界」という新しい領域が現れ始めたことに気づいた。人間界、自然界に加えて、AI界。であれば「妖怪界」もあり得るのではないか ── その直感が、このプロジェクトの出発点だった。</p>
 
     <p>妖怪たちは単なるキャラクターではない。それぞれが固有の環世界 ── 独自の知覚フィルターを通して世界を捉える主体 ── として設計されている。河童は水質データに敏感に反応し、天狗は気圧変化から嵐の兆しを読み取り、雪女は気温降下のパターンに呼応する。概念としての妖怪と、実際の観測データとしての自然の状態がミックスされ、人はそこに限られた行動 ── お祈りをする、お供えをする、お願い事をする ── で関わる。その行為が受け取られるわけではないという構造の中で、自然と人との「対話」が生まれる。ここでの対話とは、単に喋ることではなく、自然を理解していくことを指す。</p>
@@ -398,8 +428,6 @@
     <p>初日（3月29日）のコミットメッセージを追うと、朝9時に電卓アプリから始まり、午後にはPESTLEニュース収集、夜には契約書生成ツールへと移っている。翌日はCRMと経費チェッカー。その翌日にはメンバーシップサイト。一つのプロジェクトが完成を待たずに次が始まり、しかし以前のプロジェクトにも繰り返し立ち戻る。この「並行的・螺旋的」な動きは、直線的なウォーターフォール開発とも、反復的なアジャイル開発とも異なる。</p>
 
     <p>むしろそれは、フィールドワーカーの調査パターンに近い。人類学者は一つのテーマを直線的に掘り下げない。村の市場を観察し、祭りに参加し、長老の話を聞き、若者の行動を追い、そしてまた市場に戻る。異なる角度からの観察が相互に照射し合い、全体像が浮かび上がる。西村のClaude Codeとの協働にも、同じ構造が見える。CRMを作りながらメンバーシップの設計を考え、PESTLEデータを収集しながらフォーサイトの枠組みを構想する。</p>
-
-    <p>80のカスタムスラッシュコマンドの構築も、この文脈で理解できる。<code>/futurology</code>で未来学的分析を走らせ、<code>/deep-research</code>で深掘り調査を実行し、<code>/parallel-report</code>で複数エージェントが並列にレポートを生成する。これらは単なる便利機能ではなく、「思考のインフラ」として機能している。コマンドを一つ作るたびに、新しい認知的能力が組織に追加される。</p>
 
     <h3>仮想組織の構築 ── 80のカスタムコマンド</h3>
 
@@ -419,6 +447,11 @@
       <strong>なぜデータベースなのか</strong>
       個々の論文や著作に閉じ込められた知見を、構造化されたデータベースとして解放し、AIの分析力で横断的につなぐ。属人的な「知をつなぐ感性」を、再現可能なシステムとして実装する。54のデータベースは、その思想の具現化だ。
     </div>
+
+    <figure>
+      <img src="img-great-figures-db.png" alt="歴史偉人データベース ── 9,178人の偉人と経営ケースレポート" loading="lazy">
+      <figcaption>Great Figures DB ── 歴史上の偉人の意思決定構造を現代の経営概念と紐づけ、ケースレポートとして可視化する</figcaption>
+    </figure>
 
     <p>「歴史偉人データベース」は9,178人の歴史上の人物を収録し、568の概念、1,050のイベント、741のリンクで結ばれた知の網を形成している。歴史上の偉人たちの意思決定構造を現代の経営概念と紐づけ、横スクロール型のタイムラインで視覚化する。</p>
 
@@ -457,11 +490,26 @@
       </div>
     </div>
 
+    <figure>
+      <img src="img-insight-news.png" alt="Insight News ── 未来洞察レポートとシグナル検出" loading="lazy">
+      <figcaption>Insight News ── PESTLEシグナルから構造的変化を読み解くレポートと、新着シグナルのリアルタイムフィード</figcaption>
+    </figure>
+
     <p>これらのツールは相互に連携している。PESTLEが検出したシグナルがStructural Inflection Radarで構造的変化として可視化され、Investment Signal Radarの投資データと突き合わされ、Future Insight Workspaceでシナリオとして統合される。個々のツールを超えた「洞察のパイプライン」が形成されている。</p>
+
+    <figure>
+      <img src="img-raising-base.png" alt="RaisingBase ── AIで助成金を探す" loading="lazy">
+      <figcaption>RaisingBase by ミラツク ── 4,552件の助成金・補助金からAIが最適な候補を提案する</figcaption>
+    </figure>
 
     <p>助成金データベース（grant-db）は4,552件を収録し、134の元サイトから直接データを収集している。集約サイトに依存せず、各省庁・独立行政法人・全国公募財団の元情報源から直接クローリングする設計思想は、「一次ソースに立ち返る」という学術的原理の実装だ。文章技法データベースは288件のレコードに100の技法と20人の巨匠の知見を収め、3つの専門エージェント（craft-writer、craft-editor、craft-planner）が連携する。「良い文章を書く」という人間的な営みをAIシステムが支える仕組みだ。</p>
 
     <p>場所性マッチングサイト「Basho ── 場所の記憶」は、西田幾多郎の場所論とブルデューの文化資本論を理論的基盤に、飲食店・宿泊施設の場所性を8軸で評価する。698施設のデータが構造化されている。「場所」という抽象的な概念を、定量化可能なフレームワークとして実装する。哲学とデータサイエンスの出会いがここにある。</p>
+
+    <figure>
+      <img src="img-frontier-detector.png" alt="Frontier Detector ── 技術フロンティア分析" loading="lazy">
+      <figcaption>Frontier Detector ── 6つのAIエージェントが学術論文・特許・メディア・資金調達データを並列調査し、技術のフロンティア度を7次元で評価する</figcaption>
+    </figure>
 
     <p>産学連携解析システム（sangaku-matcher v2.0）は、このエコシステムの中でも独自の位置を占める。3,872社の企業R&Dセクション、46万件の近接度スコア、7要素スコアリング。研究者タイプ分類の精度を62%から100%に引き上げた設計改善。過去の産学連携実績のカバレッジを5%から76%に引き上げたデータ拡充。23万人の研究者データベースとの統合が次のステップに見据えられている。</p>
 
@@ -541,7 +589,7 @@
 
     <p>未来学が提唱する「複数の未来（Futures）」── それを単に知るだけではなく、現在進行形で生きる（Living）こと。この3週間の記録が示すのは、まさにその可能性だ。未来を予測し、分析し、報告書にまとめる段階から、未来を実際に作ってみる段階へ。AIとの協働は、その移行を劇的に加速した。</p>
 
-    <p>「作ってみる」という行為の中で、自分が描いていた未来との差分が見える。「もうちょっとこうかもしれない」「次はこうしよう」「これができるなら、こういうこともできるんじゃないか」── 次々と立ち現れてくる複数の未来。西村が最初の2週間で「役に立つもの」を作り続け、3週目に「妖怪SNS」に出会ったように、作る行為そのものが想像を触発し、想像が新たな創造を呼ぶ。このサイクルを支えているのが、AIによる「作る」コストの圧縮だ。</p>
+    <p>「作ってみる」という行為の中で、自分が描いていた未来との差分が見える。作る行為そのものが想像を触発し、想像が新たな創造を呼ぶ。西村が最初の2週間で「役に立つもの」を作り続け、3週目に「妖怪SNS」に出会ったように、このサイクルはAIによる「作る」コストの圧縮によって加速し続ける。</p>
 
     <p>「人類の問いか」── ミラツクの良い問いの基準は、こう問いかける。AIと人間の協働がどのような未来を拓くのか。その問いに対して、西村は理論で答えるのではなく、実践で答えてきた。3週間で3,271回のコミット。1,450万行のコード。54のデータベースに350万行のレコード。それは理念の具体的な実装であり、未来の可能性の物質的な証拠だ。</p>
 
@@ -559,7 +607,7 @@
       2026年4月 NPO法人ミラツク | 記事制作チーム（/article-team）
     </p>
     <p style="margin-top:8px;">
-      Claude Code 活用マニュアル: <a href="https://yuyanishimura0312.github.io/claude-code-manual-app/index.html" target="_blank">claude-code-manual-app</a>
+      Claude Code 活用マニュアル: <a href="https://claude-code-manual-app.vercel.app/" target="_blank">claude-code-manual-app</a>
     </p>
   </div>
 
