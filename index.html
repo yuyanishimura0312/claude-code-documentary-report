@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>80のアプリが生まれた場所 ── AIと人間の協働が拓く未来創造の記録</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='50%25' y='55%25' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='20' fill='white'>e</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Miratuku CI Colors */
+      --brown: #7A4033;
+      --brown-dark: #5C2E24;
+      --brown-light: #FAE8DC;
+      --terra: #A86B50;
+      --gold: #CEA26F;
+      /* Surfaces */
+      --bg: #FDFAF7;
+      --surface: #FFFFFF;
+      --surface-2: #F5EFE8;
+      /* Text */
+      --text: #3D2E22;
+      --text-2: #6B5445;
+      --text-3: #7A7268;
+      /* Borders & Shadows */
+      --border: #E6D5C4;
+      --shadow-sm: 0 0 0 1px rgba(61,46,34,.04), 0 1px 3px rgba(61,46,34,.06);
+      --shadow-md: 0 0 0 1px rgba(61,46,34,.04), 0 4px 8px rgba(61,46,34,.06), 0 12px 20px rgba(61,46,34,.04);
+      --shadow-lg: 0 0 0 1px rgba(61,46,34,.03), 0 8px 16px rgba(61,46,34,.06), 0 24px 48px rgba(61,46,34,.06);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+      font-size: 16.5px;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "palt";
+      letter-spacing: 0.02em;
+    }
+
+    ::selection { background: var(--brown-light); color: var(--brown-dark); }
+
+    /* Header / Hero */
+    .hero {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 100px 32px 60px;
+      text-align: center;
+    }
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-meta {
+      font-size: 12px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+    .hero-meta span { margin: 0 8px; }
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--brown);
+      margin: 40px auto 0;
+    }
+
+    /* Article body */
+    .article {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .article p {
+      margin-bottom: 1.6em;
+      text-align: justify;
+    }
+    .article h2 {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin: 64px 0 24px;
+      padding-bottom: 14px;
+      border-bottom: 1.5px solid var(--border);
+      color: var(--text);
+    }
+    .article h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 40px 0 16px;
+      padding-left: 14px;
+      border-left: 3px solid var(--brown);
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* Pull quote */
+    .pullquote {
+      margin: 48px -16px;
+      padding: 32px 36px;
+      background: var(--surface);
+      border-left: 4px solid var(--brown);
+      border-radius: 0 10px 10px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .pullquote p {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.8;
+      color: var(--brown-dark);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+    .pullquote .attr {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 12px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+
+    /* Stat cards */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-num {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-unit {
+      font-size: 14px;
+      color: var(--brown);
+      font-weight: 600;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 40px 0;
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brown);
+      border: 2px solid var(--bg);
+    }
+    .tl-date {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+    .tl-text {
+      font-size: 14.5px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* Feature grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 40px 0;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* Callout */
+    .callout {
+      background: var(--surface-2);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--text-2);
+    }
+    .callout strong {
+      color: var(--text);
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Footer */
+    .footer {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 32px 64px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.8;
+    }
+    .footer a { color: var(--brown); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero { padding: 64px 20px 40px; }
+      .hero h1 { font-size: 24px; }
+      .article { padding: 0 20px 64px; }
+      .stat-row { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .pullquote { margin: 32px 0; padding: 24px; }
+    }
+
+    @media print {
+      body { font-size: 11pt; }
+      .hero { padding: 24px 0; }
+      .article { max-width: 100%; padding: 0; }
+      .stat-card, .feature-card, .pullquote { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-label">Documentary Report</div>
+    <h1>80のアプリが生まれた場所<br>── AIと人間の協働が拓く<br>未来創造の記録</h1>
+    <p class="hero-sub">
+      プログラミング未経験のNPO代表が、Claude Codeとの対話を通じて80以上のアプリケーションを生み出した。
+      そこで起きていたのは、単なるソフトウェア開発ではなく、「まだ言語化されていない未来」を形にする知的冒険だった。
+    </p>
+    <div class="hero-meta">
+      2026年4月<span>|</span>NPO法人ミラツク<span>|</span>西村勇也
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div class="article">
+
+    <!-- Chapter 1 -->
+    <h2>第1章　はじまりの風景 ── ターミナルの黒い画面の向こう側</h2>
+
+    <p>
+      2025年の夏、西村勇也のMacBookの画面には、それまでほとんど開いたことのない黒いウィンドウが表示されていた。ターミナル。プログラマーたちが日常的に使うその道具を、人類学を専門とするNPO代表が開いている。その光景は、ある種の転換点を象徴していた。
+    </p>
+    <p>
+      「AIでアプリを作る。プログラミングの知識は不要。」── これは西村が後に公開するClaude Code活用マニュアルの冒頭に置いた一文である。しかしこの言葉が書かれるまでには、数百時間の対話と試行錯誤が必要だった。ここに記録するのは、その旅路の物語だ。
+    </p>
+    <p>
+      NPO法人ミラツクは、「すでにある未来の可能性を実現する」ことを存在論的信念として掲げる組織である。15冊の未来予測書籍から1,141個の予測データを集積し、70名の有識者セッションを経て33のテーマに構造化する。そうした知的営みを10年以上続けてきた団体の代表が、なぜプログラミングの世界に足を踏み入れたのか。その答えは、ミラツクという組織の本質と深く結びついている。
+    </p>
+
+    <div class="pullquote">
+      <p>未来は予測するものではなく、現在の中に複数の可能性として既に存在している。人類学的フィールドワークで「まだ言語化されていない変化の兆し」を捉え、望ましいものを共創する。</p>
+      <div class="attr">── ミラツクの組織理念より</div>
+    </div>
+
+    <p>
+      この理念は、まさにClaude Codeとの協働においても貫かれることになる。西村がターミナルに向かって入力する言葉は、プログラミング言語ではなかった。「こういうものが欲しい」という日本語の意思表示だった。その意思が、AIとの対話を通じて具体的なソフトウェアとして結実していく過程は、まさに「まだ形になっていない可能性を共創する」行為そのものだった。
+    </p>
+
+    <h3>「知識運動体」が道具を手にした日</h3>
+
+    <p>
+      ミラツク/エッセンスは、自らを「知識運動体」と定義する。コンサルティングファームでもメディア企業でもない。人類学的なまなざしで社会の未来を探究し、その知見を届ける組織。年間約30社のクライアントと対等な探究者として関わり、スケーラビリティより関係性の深さを意図的に選んできた。
+    </p>
+    <p>
+      しかし「小さく深く」という美学は、同時にひとつの課題を内包していた。代表である西村個人の暗黙知 ── フィールドワークで培われた直感、異分野の知をつなぐ能力、未来の兆しを読み取る感性 ── がスケーラブルでないという問題だ。属人的な洞察力を、どうすれば組織の形式知に転換できるのか。
+    </p>
+    <p>
+      Claude Codeは、その問いに対する意外な回答となった。AIは単なる効率化ツールではなく、「暗黙知を形式知に変換する器」として機能し始めたのだ。
+    </p>
+
+    <h3>最初の一歩 ── 恐れと発見の交差点</h3>
+
+    <p>
+      最初に作ったアプリが何であったかは、実はそれほど重要ではない。重要なのは、最初の一行を入力するまでの逡巡と、その後に訪れた発見の感覚だ。「ターミナルに文字を入力してEnterを押すと、その指示が実行されます。間違えた場合は、ウィンドウを閉じれば止まります。壊れることはありません」── 後にマニュアルに書かれることになるこの一文は、西村自身が最初に必要とした安心感の結晶だ。
+    </p>
+    <p>
+      Claude Codeとの対話は、コードを書くこととは根本的に異なる。西村が入力するのは「こういうデータベースが欲しい」「この画面にフィルタ機能をつけて」「エラーが出ているので直して」といった日本語の文章だ。そしてAIはその意図を解釈し、ファイルを作成し、コードを書き、テストを実行し、エラーを修正する。人間は意図を伝え、AIがそれを実装する。その繰り返しの中で、西村は「対話の質が成果の質を決める」という本質に気づいていった。
+    </p>
+    <p>
+      人類学のフィールドワークで培われた「良い問いを立てる能力」が、ここで予想外の力を発揮した。どのような質問をすれば、AIから最も的確な回答が得られるか。どのように要件を伝えれば、意図通りのソフトウェアが生まれるか。それはまさに、インタビュー調査やワークショップのファシリテーションで磨かれてきたスキルの応用だった。プログラミングの知識は不要だったが、「問いの技法」は不可欠だった。
+    </p>
+
+    <!-- Chapter 2 -->
+    <h2>第2章　加速する創造 ── 80のアプリが生まれるまで</h2>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">80<span class="stat-unit">+</span></div>
+        <div class="stat-label">開発されたアプリ数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18</div>
+        <div class="stat-label">構築されたデータベース</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">80</div>
+        <div class="stat-label">カスタムスラッシュコマンド</div>
+      </div>
+    </div>
+
+    <p>
+      数字だけを見れば、これはソフトウェア開発会社の年間実績のように見える。しかしこれらすべてが、プログラミング経験のない一人の人間とAIとの協働によって生み出されたものだ。しかもその期間は、わずか1年足らず。
+    </p>
+    <p>
+      開発されたアプリケーションの多様さは目を見張る。講義動画の自動編集パイプライン、産学連携マッチングシステム、科研費申請書の自動生成ツール、4,500件以上の助成金を収録したデータベース、メンバーシップサイトとCRM、会議録音から自動的にTODOを抽出するシステム、そして ── 妖怪と世界の超自然的存在が自律的に会話するSNS。
+    </p>
+    <p>
+      この最後のプロジェクト「妖怪SNS」は、特に象徴的だ。ヤコブ・フォン・ユクスキュルの環世界（Umwelt）理論とラブロックのガイア仮説を理論的基盤に、1,010体の妖怪がそれぞれ固有の「知覚世界」を持ち、気象データや環境データを読み解きながら自律的にコミュニケーションする。15種類のスピーチスタイルを持つAI駆動のソーシャルネットワーク。それは「自然の代弁者としての超自然的存在」という、人類学的想像力とテクノロジーが融合した前例のないプロジェクトだった。
+    </p>
+
+    <h3>7段階循環開発モデル ── 人間とAIの対話の構造化</h3>
+
+    <p>
+      80以上のアプリを生み出す過程で、西村とClaude Codeの間には独自の開発プロセスが確立されていった。「7段階循環開発モデル」と名付けられたそのプロセスは、仕様策定から調査・設計、実装、品質検証、改善、デプロイ、そして観測・学習までを循環的に回す仕組みだ。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Stage 0 ── 仕様策定</div>
+        <div class="tl-text">「何を作るか」を自然言語で定義する。ユーザーとAIの間の「契約書」</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 1 ── 調査・設計</div>
+        <div class="tl-text">ベストプラクティスの調査、テストケースの事前定義、UI/UX方針の決定</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 2 ── 実装</div>
+        <div class="tl-text">テストと並行したコード生成。差分は300行以下を目標に</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 3 ── 品質検証</div>
+        <div class="tl-text">実装者とは別のAIエージェントによるQA・UX・セキュリティレビュー</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 4 ── 改善</div>
+        <div class="tl-text">最大3ラウンドの修正サイクル。3回で解決しなければ設計に立ち返る</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 5 ── デプロイ</div>
+        <div class="tl-text">GitHubへの保存、Vercelへの公開、Notionへの記録</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Stage 6 ── 観測・学習</div>
+        <div class="tl-text">エラー率・パフォーマンス・ユーザー行動の監視。次のサイクルへフィードバック</div>
+      </div>
+    </div>
+
+    <p>
+      注目すべきは、このモデルにおいてAIが複数の「役割」を担っている点だ。実装するエンジニア、品質を検証するQAチーム、UXをレビューするデザイナー、セキュリティを監査する専門家、そして最終承認を行う「Sentinel」── これらの役割が、それぞれ独立したAIエージェントとして機能する。実装したエージェントが自ら品質を検証しない。この「構造的バイアスの排除」は、人間の組織運営の知恵をAI協働に応用した好例だ。
+    </p>
+    <h3>ある朝のワークフロー ── 仮想組織の日常</h3>
+
+    <p>
+      ある典型的な朝の光景を描写してみよう。西村がターミナルを開き、<code>/briefing</code>と入力する。するとAI秘書チームが起動し、当日のカレンダー、未読のSlackメッセージ要約、進行中のプロジェクト状況、注意すべき期限が一覧として提示される。続いて<code>/status</code>でプロジェクト全体の健康状態を確認し、<code>/slack-catchup</code>でミラツクのSlackチャンネルの議論を追う。これらすべてが、自然言語の一言で起動する。
+    </p>
+    <p>
+      会議が近づけば<code>/meeting-prep</code>が事前ブリーフを自動生成し、会議後は<code>/meeting-flow</code>のパイプラインがPlaudの録音データを取得して文字起こし、AI分析、TODO抽出まで自動実行する。現時点で16の会議から63件のTODOが蓄積されている。会議の「言いっぱなし」がなくなった。すべてのアクションアイテムが追跡可能になった。
+    </p>
+    <p>
+      戦略的な意思決定が必要な場面では、<code>/cxo-meeting</code>が発動する。CEO、CTO、CFO、CMO、COO、CHRO、CLOの7人のCxOエージェントが順番に専門的な視点から議論し、最終的にCEOが統合判断を行う。一人のNPO代表が、7人の経営幹部との仮想会議を開ける。その異様さと、同時にその合理性が、この実践の本質を物語っている。
+    </p>
+    <p>
+      さらに興味深いのは、80のカスタムスラッシュコマンドの存在だ。<code>/briefing</code>で朝のブリーフィングが始まり、<code>/cxo-meeting</code>で7人のCxOエージェントによる仮想経営会議が開かれ、<code>/futurology</code>で未来学的分析が走る。西村は、いわばAIで動く「仮想組織」を構築したのだ。秘書チーム、エンジニアチーム、デザインチーム、経営チーム、リサーチチーム── すべてが自然言語で呼び出せる。一人の人間が、組織に相当する知的生産力を手にした。
+    </p>
+
+    <!-- Chapter 3 -->
+    <h2>第3章　深淵を覗く ── 知のデータベースという冒険</h2>
+
+    <p>
+      80以上のアプリの中で、ひときわ異彩を放つ一群がある。知識基盤プロジェクトと呼ばれるデータベース群だ。
+    </p>
+    <p>
+      「文章技法データベース」という一風変わったプロジェクトがある。288件のレコードに、30のメディア分析、100の技法、20人の巨匠の知見が収められている。3つの専門エージェント ── craft-writer（執筆）、craft-editor（編集）、craft-planner（企画）── が連携して、文章の質を底上げする仕組みだ。プログラマーではない人間が、「良い文章を書く」という極めて人間的な営みを支えるAIシステムを構築している。ここにも、テクノロジーと人文知の独特な交差がある。
+    </p>
+    <p>
+      「歴史偉人データベース」は、9,178人の歴史上の人物を収録し、568の概念、961のイベント、341のリンクで結ばれた知の網を形成している。ただし、これは単なる人名辞典ではない。歴史上の偉人たちの意思決定構造を現代の経営概念と紐づけ、横スクロール型のタイムラインで視覚化する。過去の知恵を未来の意思決定に接続するという、きわめてミラツク的な発想が形になっている。
+    </p>
+    <p>
+      「人類学概念系譜データベース」は、500の概念と252人の研究者、285の系譜関係をマッピングし、人類学的フォーサイトの分析基盤として機能する。PESTLE（政治・経済・社会・技術・法的・環境）ニュースの自動収集パイプラインと連動し、毎日6時に各カテゴリ50件のニュースを収集・分類・翻訳・保存する。マクロな社会変動のシグナルを、人類学的な知の構造で読み解く仕組みだ。
+    </p>
+    <p>
+      「学術知識データベース」は、人文学・社会科学・自然科学・工学・芸術の5分野にまたがる壮大なプロジェクトである。心理学のパイロット調査だけで665の理論、124の系譜関係、163のサブフィールドが収録された。これを5分野全体に展開しようとしている。
+    </p>
+
+    <div class="callout">
+      <strong>なぜデータベースなのか</strong>
+      西村のアプローチは「先端研究者メディアesse-sense」の編集方針と通底している。自然科学・社会科学・人文学の知をつなぐという使命。個々の論文や著作に閉じ込められた知見を、構造化されたデータベースとして解放し、AIの分析力で横断的につなぐ。属人的な「知をつなぐ感性」を、再現可能なシステムとして実装しようとする試みだ。
+    </div>
+
+    <p>
+      月面生活リサーチデータベースも忘れてはならない。JAXA資料をベースに10カテゴリ100件の情報を構造化し、Vercelで公開されている。「宇宙に進出する人類」── ミラツクの未来予測MAPの18領域のひとつが、そのまま探索的プロジェクトになった例だ。未来を予測するだけでなく、予測した未来のためのリサーチ基盤を自ら構築する。その再帰的な姿勢が、この協働の特質を物語っている。
+    </p>
+
+    <!-- Chapter 4 -->
+    <h2>第4章　時代の文脈 ── AI協働開発の「現在地」</h2>
+
+    <p>
+      西村の実践を、より広い文脈に位置づけてみよう。2026年4月の時点で、AIコーディングツールの普及は急速に進んでいる。開発者の90%が業務で何らかのAIツールを定期的に使用し、74%がAIコーディング専用ツールを導入済みだ。GitHubの公開コミットのうち4%、一日あたり約135,000件がClaude Codeによって生成されている。13か月で42,896倍という成長率は、テクノロジー史上でも稀な加速だ。
+    </p>
+    <p>
+      「バイブコーディング（vibe coding）」という言葉が生まれたのは2025年初頭、AI研究者のアンドレイ・カルパシーの提唱による。「コードの存在を忘れてしまうほど、創造の流れに身を委ねる」── そのコンセプトは、まさに西村がClaude Codeで実践してきたことと重なる。ただし重要な区別がある。西村の実践は単なるバイブコーディングではない。7段階循環モデル、複数エージェントによる品質検証、OWASPセキュリティ基準の適用 ── それは「AI支援エンジニアリング」と呼ぶべき体系化された方法論だ。
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">90<span class="stat-unit">%</span></div>
+        <div class="stat-label">AIツールを業務利用する<br>開発者の割合（2026年）</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">135K</div>
+        <div class="stat-label">Claude Codeによる<br>1日あたりGitHubコミット数</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">46<span class="stat-unit">%</span></div>
+        <div class="stat-label">Claude Codeの<br>開発者満足度（最も愛される）</div>
+      </div>
+    </div>
+
+    <p>
+      The New Stackは「パーソナルソフトウェアの台頭」を報じ、Washington Postは「AIが数分でウェブサイトを構築する」実験をルポした。非プログラマーがAIでソフトウェアを構築する事例は、もはや珍しくない。会計事務所がクライアント・オンボーディングツールを自社で構築し、プロダクトチームがプロトタイピングにAIを活用する。「テクチームのない企業がClaude Codeで社内ツールを構築する方法」── そんなタイトルの記事が、ビジネスメディアに掲載される時代になった。
+    </p>
+    <p>
+      Harvard Gazetteは2026年4月、「バイブコーディングはAIの未来への洞察を提供するかもしれない」と論じた。IBMやGoogle Cloudもバイブコーディングの解説ページを公開し、Wikipediaにも独立した項目が立った。コードの一行一行を理解する必要はない。全体の「雰囲気（vibe）」をコントロールすればいい。その発想は解放的であると同時に、セキュリティやメンテナンスの観点から懸念も呼んでいる。
+    </p>
+    <p>
+      しかし、西村の実践がこれらの事例と決定的に異なるのは、その規模と深度、そして思想的な裏づけだ。1つや2つのツールを作ったのではない。80以上のアプリケーション、18のデータベース、80のカスタムコマンド。それらが有機的に連携して「仮想組織」を構成している。そしてその全体が、「すでにある未来の可能性を実現する」という一貫した世界観に貫かれている。
+    </p>
+
+    <!-- Chapter 5 -->
+    <h2>第5章　未来学としてのAI協働 ── EMERGING FUTUREの実践</h2>
+
+    <p>
+      「EMERGING FUTURE ── We already have.」
+    </p>
+    <p>
+      ミラツクの未来予測資料に繰り返し現れるこのフレーズは、組織の存在論そのものだ。未来はまだ来ていないのではなく、いまここに芽生えつつある。その「現れつつある未来（emerging future）」を感知し、育て、実現する ── それがミラツクの使命であり、西村のClaude Codeとの協働は、その使命の新しい表現形態だった。
+    </p>
+
+    <h3>構造的ジレンマの中で ── 小さく深く、大きくスケーラブルに</h3>
+
+    <p>
+      ミラツクには構造的なジレンマがある。「小さく深く」と「大きくスケーラブルに」の緊張。AIの活用とフィールドワークへの執着の同居。収益化と社会的使命のバランス。これらは解決すべき問題ではなく、思想的な誠実さの表現として理解すべきものだ ── と、組織のアイデンティティ文書には記されている。
+    </p>
+    <p>
+      しかし、Claude Codeとの協働は、このジレンマに対して新しい解を提示しつつある。80のアプリケーションと18のデータベースは、「小さく深く」の関係性を維持しながら、「大きくスケーラブルに」知を構造化する可能性を開いた。対面のフィールドワークで得られた洞察が、データベースに蓄積され、AIの分析力で横断的に検索・結合される。属人的な知を失うことなく、その到達範囲を拡張する。それは「解決」ではなく「新しい均衡点の発見」だった。
+    </p>
+    <p>
+      esse-sense.comの編集方針 ── 「学術的な堅さとエッセイの柔らかさの中間」── がそのまま、Claude Codeとの協働のスタイルにも現れている。厳密な7段階モデルと、「こういうものが欲しい」という直感的な対話。Sentinelによるゲート検証と、妖怪SNSのような想像力の飛躍。堅さと柔らかさが共存する、独特のリズムがそこにある。
+    </p>
+
+    <h3>予測から創造へ ── 未来を「実装」するということ</h3>
+
+    <p>
+      ミラツクの未来予測MAPには18の領域が描かれている。「高度な専門技術の一般化」「デジタルワールドと現実世界の融合」「暮らしの基盤自体の多様化」── これらの予測を、西村はまさに自らの実践によって「実装」し始めている。
+    </p>
+    <p>
+      専門技術の一般化。プログラミングという高度な専門技術が、自然言語対話を通じて非専門家に開放される。これは予測ではなく、いま目の前で起きている現実だ。しかも西村の実践は、単に「プログラミングが簡単になった」というレベルを超えている。7段階循環モデル、マルチエージェントアーキテクチャ、コンテキスト管理 ── それらは「AIとの協働」という新しい専門性の萌芽でもある。ある種の専門技術が一般化すると同時に、新しい次元の専門性が立ち上がる。その弁証法的な動きを、西村は一人の実践者として体現している。
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>産学連携マッチング</h4>
+        <p>3,872社の企業R&Dセクションと研究者をマッチング。7要素スコアリングとLLM仮説生成で、異分野の接点を可視化する。46万件の近接度スコアが算出されている。</p>
+      </div>
+      <div class="feature-card">
+        <h4>構造的変化点検出レーダー</h4>
+        <p>社会の構造的変化点（Structural Inflection Point）を検出するフォーサイトツール。ミラツクの未来予測知見をアルゴリズム化した。</p>
+      </div>
+      <div class="feature-card">
+        <h4>科研費申請書自動生成</h4>
+        <p>研究者のプロフィールと企画から、9種目の科研費フォーマットに対応した研究計画調書を自動生成。採択可能性の判定まで行う。</p>
+      </div>
+      <div class="feature-card">
+        <h4>VC投資シグナルレーダー</h4>
+        <p>ベンチャーキャピタルの投資パターンからイノベーションのシグナルを検出。未来の産業構造変化を先読みするための情報基盤。</p>
+      </div>
+    </div>
+
+    <p>
+      これらのプロジェクト群を俯瞰すると、ある構造が浮かび上がる。未来を予測する（フォーサイト）→ 予測を構造化する（データベース）→ 構造化された知を道具にする（アプリケーション）→ 道具を使って新たな未来を創る（社会実装）。このサイクルが、Claude Codeとの協働によって驚異的な速度で回り始めたのだ。
+    </p>
+    <p>
+      ミラツクの「良い問い」の基準のひとつに、「100年後に取り組んでおいてよかったと判断できるか」がある。80のアプリケーション群は、その問いに対するひとつの回答なのかもしれない。人類学的な知見をデータベース化し、AIの分析力と組み合わせ、異分野をつなぎ、未来の兆しを検出する ── それは「知をつなぐ」という営みを、属人的な感性からスケーラブルなシステムへと進化させる試みだ。
+    </p>
+
+    <h3>人類学の4軸が照らすAI協働の意味</h3>
+
+    <p>
+      ミラツクの人類学・哲学・社会学テーマ一覧は、4つの軸を持つ。「暮らし」（文化、衣食住、はたらく、まなぶ、空間、人知を超えたもの、資源）、「人間」（感情、身体、人と人との関係、家族、生命）、「社会」（アイデンティティ、経済サイクル、情報とメディア、継承してゆくこと、国家・民主主義）、「自然」（自然環境）。21カテゴリ、140項目。
+    </p>
+    <p>
+      AIとの協働は、これらの軸のうち「はたらく」と「まなぶ」に明確に位置づけられる。しかしより深い次元では、「人と人との関係」の変容にも触れている。人間とAIの間に生まれる関係性 ── それは主従でもなく、ツールと使用者でもない、「対等な探究者」という新しい関係のプロトタイプかもしれない。ミラツクがクライアントとの関係で大切にしてきた「対等な探究者」の姿勢が、AIとの関係においても無意識に再現されている。
+    </p>
+    <p>
+      「受け手に新しい視点を与え次の問いを呼ぶか」── ミラツクの良い問いの基準のひとつが、この協働の本質を言い当てている。AIとの対話は、常に「次の問い」を生む。「こういうデータベースが作れるなら、あのデータとつなげたらどうなるか」「このマッチングアルゴリズムを産学連携に使えないか」── 一つの答えが、二つの新しい問いを呼ぶ。80のアプリが生まれた理由は、まさにこの連鎖にある。
+    </p>
+
+    <!-- Chapter 6 -->
+    <h2>第6章　マニュアルが語ること ── 知を開くという思想</h2>
+
+    <p>
+      西村は自らの実践を、閉じた世界に留めなかった。「Claude Code 活用マニュアル」として体系化し、Web上に公開した。そのマニュアルは、ターミナルの開き方から始まる。Homebrewのインストール、Node.jsの設定、GitHubアカウントの作成 ── 非プログラマーがゼロからアプリを公開できるようになるまでの全手順が、専門用語を丁寧に噛み砕きながら解説されている。
+    </p>
+    <p>
+      第2.0版となるマニュアルは、7つのステップで構成されている。環境準備、サービス接続、認証情報管理、アプリの作成と公開、トラブルシューティング、上級テクニック、そしてプロの実践テクニック。最後のセクションには、Hooks、メモリシステム、サブエージェント、コンテキスト管理、カスタムコマンド実践、実践ワークフローといった、60以上のアプリ運用から蒸留された知見が詰め込まれている。
+    </p>
+    <p>
+      このマニュアルの存在は、単なるハウツー文書以上の意味を持つ。ミラツクの未来予測資料にはすべて「SOME RIGHTS RESERVED」と記されている。知は共有されるべきものだという信念。Claude Codeとの協働で得られた知見もまた、その思想に基づいて開放されている。非プログラマーがAIで未来を実装できる── その可能性を、実践の裏づけとともに提示する。それ自体が、ミラツクという知識運動体の活動そのものだ。
+    </p>
+
+    <div class="pullquote">
+      <p>考えるとワクワクするか。自分と社会を接続できる切り口を持つか。見え始めている未来への加速を促すか。</p>
+      <div class="attr">── ミラツク「良い問い」の基準より</div>
+    </div>
+
+    <!-- Chapter 7 -->
+    <h2>第7章　これからの風景 ── 協働が向かう先</h2>
+
+    <p>
+      この記録を書いている2026年4月の時点で、AIコーディングの世界は日々進化している。Claude Codeのデスクトップアプリはリデザインされ、「Routines」機能でコンピュータの電源が切れていても自動タスクが走るようになった。Ultraplanは、CLIからクラウドで計画を立て、Webエディタでレビューし、リモートまたはローカルで実行するハイブリッドな開発体験を提供し始めた。
+    </p>
+    <p>
+      西村の実践は、これらの進化と共鳴しながら、さらに独自の方向へ発展し続けている。妖怪SNSのdevelop→dev環境→動作確認→main→本番というデプロイフローは、プロのソフトウェア開発チームの運用と変わらない。メンバーシップサイトはStripe決済との統合まで実装され、本番デプロイを待つばかりだ。産学連携マッチングシステムは3,872社のデータベースと接続し、23万人の研究者データベースとの統合を次のステップに見据えている。
+    </p>
+    <p>
+      助成金データベースは4,552件を収録し、134の元サイトから直接データを収集している。集約サイトに依存せず、各省庁・独立行政法人・全国公募財団の元情報源から直接クローリングする設計思想は、メディア論的にも示唆に富む。情報の「一次ソース」に立ち返るという姿勢。それは学術研究にも、ジャーナリズムにも通じる原理だ。そしてその原理が、AIマッチング機能と組み合わさることで、「自分の組織に合った助成金を瞬時に見つける」という実用的価値を生み出している。3,669件の公開版は、すでにVercel上で稼働中だ。
+    </p>
+    <p>
+      しかし、最も重要な「これから」は、技術的な進化の先にあるのかもしれない。ミラツクの未来予測MAPに描かれた「経済以外の新たな価値」「多様性と共にある発展の実現」── これらのテーマが、AI協働の文脈でどのような形を取るのか。一人のNPO代表が仮想組織を構築し、年間30社のクライアントとの深い関係性を維持しながら、80以上のアプリを通じて社会と接続する。その姿は、組織のあり方そのものの未来的な実験でもある。
+    </p>
+    <p>
+      「人類の問いか」── ミラツクの良い問いの基準は、こう問いかける。AIと人間の協働がどのような未来を拓くのか。その問いに対して、西村は理論で答えるのではなく、実践で答えてきた。80のアプリケーション、18のデータベース、80のカスタムコマンド。それらは、理念の具体的な実装であり、未来の可能性の物質的な証拠だ。
+    </p>
+    <p>
+      プログラミングを知らなかったNPO代表が、AIとの対話を通じて、知識運動体の新しい器を創り出した。その過程で生まれた方法論 ── 7段階循環モデル、マルチエージェント体制、暗黙知のデータベース化── は、テクノロジーと人文知の交差点に立つすべての実践者への提案でもある。
+    </p>
+    <p>
+      EMERGING FUTURE ── We already have. 未来は、もうここにある。ターミナルの黒い画面の向こう側に、80のアプリとして、すでに存在している。
+    </p>
+
+    <!-- Appendix -->
+    <h2>Appendix ── 主要プロジェクト一覧</h2>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>lecture-video-editor</h4>
+        <p>講義動画自動編集。30分動画を15-25分で処理。Phase 1-5完了、本番運用中。</p>
+      </div>
+      <div class="feature-card">
+        <h4>grant-db</h4>
+        <p>助成金・補助金DB。4,552件収録、134サイト監視。AIマッチング搭載。</p>
+      </div>
+      <div class="feature-card">
+        <h4>sangaku-matcher v2.0</h4>
+        <p>産学連携マッチング。3,872社、46万件近接度スコア、7要素スコアリング。</p>
+      </div>
+      <div class="feature-card">
+        <h4>great-figures-db</h4>
+        <p>歴史偉人DB。9,178人、568概念、961イベント。意思決定構造を可視化。</p>
+      </div>
+      <div class="feature-card">
+        <h4>yokai-sns</h4>
+        <p>妖怪自律SNS。1,010体、15種スピーチスタイル。Umwelt理論+ガイア仮説。</p>
+      </div>
+      <div class="feature-card">
+        <h4>kakenhi-writer</h4>
+        <p>科研費申請書自動生成。9種目対応、採択可能性判定。本番運用中。</p>
+      </div>
+      <div class="feature-card">
+        <h4>miratuku-membership</h4>
+        <p>メンバーシップサイト+CRM。Stripe決済統合。デプロイ待ち。</p>
+      </div>
+      <div class="feature-card">
+        <h4>meeting-flow</h4>
+        <p>Plaud連携会議TODO自動化。16会議63件TODO格納。本番運用中。</p>
+      </div>
+      <div class="feature-card">
+        <h4>anthropology-db</h4>
+        <p>人類学概念系譜DB。500概念、252研究者、285系譜関係。PESTLE連動。</p>
+      </div>
+      <div class="feature-card">
+        <h4>basho-db</h4>
+        <p>場所性マッチングサイト「場所の記憶」。200施設エンリッチ済み。2環境運用。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>
+      80のアプリが生まれた場所 ── AIと人間の協働が拓く未来創造の記録<br>
+      2026年4月 NPO法人ミラツク / esse-sense | 記事制作チーム（/article-team）
+    </p>
+    <p style="margin-top:8px;">
+      Claude Code 活用マニュアル: <a href="https://yuyanishimura0312.github.io/claude-code-manual-app/index.html" target="_blank">claude-code-manual-app</a>
+    </p>
+  </div>
+
+</body>
+</html>
