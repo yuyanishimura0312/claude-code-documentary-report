@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3週間で126のプロジェクトが生まれた場所 ── AIと人間の協働が拓く未来創造の記録</title>
+  <meta name="description" content="プログラミング未経験のNPO代表が、Claude Codeとの対話を通じて3週間で126のプロジェクトを生み出した記録。3,271回のコミット、1,450万行のコード、350万行を超えるデータベース。">
+  <meta property="og:title" content="3週間で126のプロジェクトが生まれた場所">
+  <meta property="og:description" content="AIと人間の協働が拓く未来創造の記録 ── プログラミング未経験のNPO代表がClaude Codeと3週間で126のプロジェクトを生み出した">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://claude-code-documentary-report.vercel.app/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3週間で126のプロジェクトが生まれた場所">
+  <meta name="twitter:description" content="AIと人間の協働が拓く未来創造の記録">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23111'/><text x='50%25' y='55%25' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='20' fill='white'>e</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -20,8 +28,8 @@
       --surface-2: #F5EFE8;
       /* Text */
       --text: #3D2E22;
-      --text-2: #6B5445;
-      --text-3: #7A7268;
+      --text-2: #5E4536;
+      --text-3: #635A52;
       /* Borders & Shadows */
       --border: #E6D5C4;
       --shadow-sm: 0 0 0 1px rgba(61,46,34,.04), 0 1px 3px rgba(61,46,34,.06);
@@ -29,6 +37,7 @@
       --shadow-lg: 0 0 0 1px rgba(61,46,34,.03), 0 8px 16px rgba(61,46,34,.06), 0 24px 48px rgba(61,46,34,.06);
     }
 
+    html { scroll-behavior: smooth; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -44,12 +53,32 @@
 
     ::selection { background: var(--brown-light); color: var(--brown-dark); }
 
+    /* Reading progress bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brown), var(--gold));
+      z-index: 200;
+      transition: width .1s linear;
+    }
+
     /* Header / Hero */
     .hero {
       max-width: 780px;
       margin: 0 auto;
       padding: 100px 32px 60px;
       text-align: center;
+      animation: fadeInUp .8s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero { animation: none; }
     }
     .hero-label {
       font-size: 11px;
@@ -102,10 +131,19 @@
       font-size: 22px;
       font-weight: 600;
       line-height: 1.4;
-      margin: 64px 0 24px;
+      margin: 80px 0 28px;
+      padding-top: 40px;
       padding-bottom: 14px;
       border-bottom: 1.5px solid var(--border);
       color: var(--text);
+    }
+    .article h2::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 20px;
     }
     .article h3 {
       font-size: 17px;
@@ -120,11 +158,23 @@
     /* Pull quote */
     .pullquote {
       margin: 48px -16px;
-      padding: 32px 36px;
+      padding: 40px 36px 32px;
       background: var(--surface);
       border-left: 4px solid var(--brown);
       border-radius: 0 10px 10px 0;
       box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .pullquote::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 56px;
+      color: var(--brown);
+      opacity: .15;
+      position: absolute;
+      top: 8px;
+      left: 28px;
+      line-height: 1;
     }
     .pullquote p {
       font-family: 'Noto Serif JP', Georgia, serif;
@@ -468,6 +518,88 @@
       .float-bar-text { font-size: 12px; }
     }
 
+    /* Focus visibility */
+    .manual-cta-btn:focus-visible,
+    .footer-cta-button:focus-visible,
+    .float-bar-link:focus-visible,
+    .toc-list a:focus-visible {
+      outline: 2px solid var(--brown);
+      outline-offset: 2px;
+    }
+    .float-bar-close:focus-visible {
+      outline: 2px solid var(--brown);
+      outline-offset: 2px;
+      border-radius: 2px;
+      opacity: 1;
+    }
+
+    /* Table of Contents */
+    .toc {
+      max-width: 700px;
+      margin: 0 auto 48px;
+      padding: 0 32px;
+    }
+    .toc-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .toc-title {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .toc-list {
+      list-style: none;
+      counter-reset: toc-counter;
+    }
+    .toc-list li {
+      counter-increment: toc-counter;
+      margin-bottom: 6px;
+    }
+    .toc-list a {
+      font-size: 14.5px;
+      color: var(--text-2);
+      text-decoration: none;
+      line-height: 1.7;
+      display: block;
+      padding: 4px 0 4px 28px;
+      position: relative;
+      border-radius: 4px;
+      transition: color .2s ease, background .2s ease;
+    }
+    .toc-list a::before {
+      content: counter(toc-counter);
+      position: absolute;
+      left: 0;
+      width: 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brown);
+      top: 5px;
+    }
+    .toc-list a:hover {
+      color: var(--brown);
+      background: var(--brown-light);
+    }
+    @media (max-width: 640px) {
+      .toc { padding: 0 20px; margin-bottom: 32px; }
+      .toc-inner { padding: 20px 24px; }
+    }
+
+    /* Tablet breakpoint */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .hero { padding: 80px 32px 50px; }
+      .hero h1 { font-size: 28px; }
+      .article { max-width: 640px; }
+    }
+
     @media print {
       body { font-size: 11pt; }
       .hero { padding: 24px 0; }
@@ -479,7 +611,9 @@
 </head>
 <body>
 
-  <div class="hero">
+  <div class="reading-progress" id="readingProgress" role="progressbar" aria-label="読了状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <header class="hero">
     <div class="hero-label">Documentary Report</div>
     <h1>3週間で126のプロジェクトが<br>生まれた場所<br>── AIと人間の協働が拓く未来創造の記録</h1>
     <p class="hero-sub">
@@ -489,11 +623,28 @@
       2026年4月<span>|</span>NPO法人ミラツク<span>|</span>西村勇也
     </div>
     <div class="hero-divider"></div>
-  </div>
+  </header>
 
-  <div class="article">
+  <nav class="toc" aria-label="目次">
+    <div class="toc-inner">
+      <div class="toc-title">CONTENTS</div>
+      <ol class="toc-list">
+        <li><a href="#ch1">はじまりの風景 ── 2026年3月29日</a></li>
+        <li><a href="#ch2">加速する創造 ── 数字が語る3週間</a></li>
+        <li><a href="#ch3">深淵を覗く ── 54のデータベースが形成する知の地層</a></li>
+        <li><a href="#ch4">日常を支えるアプリたち ── 未来洞察とレポートの道具箱</a></li>
+        <li><a href="#ch5">知の時間コストの圧縮 ── 文字、印刷、インターネット、そしてAI</a></li>
+        <li><a href="#ch6">未来学としてのAI協働 ── EMERGING FUTUREの実践</a></li>
+        <li><a href="#ch7">マニュアルが語ること ── 知を開くという思想</a></li>
+        <li><a href="#ch8">未来を生きる ── Living Futures</a></li>
+      </ol>
+    </div>
+  </nav>
 
-    <h2>第1章　はじまりの風景 ── 2026年3月29日</h2>
+  <main>
+  <article class="article">
+
+    <h2 id="ch1">第1章　はじまりの風景 ── 2026年3月29日</h2>
 
     <p>2026年3月29日。西村勇也のMacBookの画面に、それまでほとんど開いたことのない黒いウィンドウが表示された。ターミナル。プログラマーたちが日常的に使うその道具を、人類学を専門とするNPO代表が開いている。その日、最初のコミットが記録された。シンプルな電卓アプリ。しかしその数時間後には、PESTLEニュース収集システムの最初のコミットが続いた。契約書生成ツール。翌日には営業リスト、CRM、経費チェッカー、プレスリリース生成ツール──。3月29日だけで158回のコミット。翌日には171回。その翌日も156回。この驚異的なペースは、3週間にわたって止まることがなかった。</p>
 
@@ -522,7 +673,7 @@
 
     <p>人類学のフィールドワークで培われた「良い問いを立てる能力」が、ここで予想外の力を発揮した。どのような質問をすれば、AIから最も的確な回答が得られるか。どのように要件を伝えれば、意図通りのソフトウェアが生まれるか。それはまさに、インタビュー調査やワークショップのファシリテーションで磨かれてきたスキルの応用だった。プログラミングの知識は不要だったが、「問いの技法」は不可欠だった。</p>
 
-    <h2>第2章　加速する創造 ── 数字が語る3週間</h2>
+    <h2 id="ch2">第2章　加速する創造 ── 数字が語る3週間</h2>
 
     <div class="stat-row">
       <div class="stat-card">
@@ -591,7 +742,7 @@
 
     <p>ベストプラクティスのベンチマーク調査から構築された7段階循環開発モデル（仕様→調査設計→実装→品質検証→改善→デプロイ→観測）は、開発プロセスの骨格として機能している。しかしgitログが示す実際の行動パターンは、このモデルよりもはるかに有機的だ。実装するエンジニアエージェント、品質を検証するQAチーム、UXをレビューするデザイナー、セキュリティを監査する専門家、そして最終承認を行うSentinel ── これらが独立したAIエージェントとして機能し、構造的バイアスを排除する。理論的なフレームワークと、創造的な混沌が共存している。</p>
 
-    <h2>第3章　深淵を覗く ── 54のデータベースが形成する知の地層</h2>
+    <h2 id="ch3">第3章　深淵を覗く ── 54のデータベースが形成する知の地層</h2>
 
     <p>126のプロジェクトの中で、ひときわ異彩を放つのがデータベース群だ。54のデータベース、350万行のレコード、1.8GBのデータ。それは「知の地層」と呼ぶにふさわしい規模を持つ。</p>
 
@@ -615,7 +766,7 @@
 
     <p>「人類学概念系譜データベース」は500の概念と252人の研究者、285の系譜関係をマッピングし、PESTLEパイプラインと連動する。月面生活リサーチデータベースはJAXA資料をベースに10カテゴリ472件の情報を構造化している。「宇宙に進出する人類」── ミラツクの未来予測MAPの18領域のひとつが、そのまま探索的プロジェクトになった例だ。</p>
 
-    <h2>第4章　日常を支えるアプリたち ── 未来洞察とレポートの道具箱</h2>
+    <h2 id="ch4">第4章　日常を支えるアプリたち ── 未来洞察とレポートの道具箱</h2>
 
     <p>54のデータベースと126のプロジェクトの中で、日常的に最も活用されているのは、未来洞察とレポート生成に関わるツール群だ。</p>
 
@@ -669,7 +820,7 @@
 
     <p>産学連携解析システム（sangaku-matcher v2.0）は、このエコシステムの中でも独自の位置を占める。3,872社の企業R&Dセクション、46万件の近接度スコア、7要素スコアリング。研究者タイプ分類の精度を62%から100%に引き上げた設計改善。過去の産学連携実績のカバレッジを5%から76%に引き上げたデータ拡充。23万人の研究者データベースとの統合が次のステップに見据えられている。</p>
 
-    <h2>第5章　知の時間コストの圧縮 ── 文字、印刷、インターネット、そしてAI</h2>
+    <h2 id="ch5">第5章　知の時間コストの圧縮 ── 文字、印刷、インターネット、そしてAI</h2>
 
     <p>西村の実践を、より広い歴史的文脈に位置づけてみよう。人類は知識の獲得コストを繰り返し圧縮してきた。</p>
 
@@ -698,7 +849,7 @@
 
     <p>2026年4月の時点で、AIコーディングツールの普及は急速に進んでいる。開発者の90%が業務で何らかのAIツールを定期的に使用し、GitHubの公開コミットのうち4%がClaude Codeによって生成されている。「バイブコーディング（vibe coding）」── AI研究者カルパシーが2025年に提唱した「コードの存在を忘れるほど創造の流れに身を委ねる」というコンセプトは、Wikipediaに独立項目が立つほど浸透した。しかし西村の実践は、そうした潮流の中でも、その規模と思想的裏づけにおいて際立っている。</p>
 
-    <h2>第6章　未来学としてのAI協働 ── EMERGING FUTUREの実践</h2>
+    <h2 id="ch6">第6章　未来学としてのAI協働 ── EMERGING FUTUREの実践</h2>
 
     <p>「EMERGING FUTURE ── We already have.」</p>
 
@@ -726,7 +877,7 @@
 
     <p>「受け手に新しい視点を与え次の問いを呼ぶか」── ミラツクの良い問いの基準のひとつが、この協働の本質を言い当てている。AIとの対話は、常に「次の問い」を生む。一つの答えが、二つの新しい問いを呼ぶ。126のプロジェクトが3週間で生まれた理由は、まさにこの連鎖にある。</p>
 
-    <h2>第7章　マニュアルが語ること ── 知を開くという思想</h2>
+    <h2 id="ch7">第7章　マニュアルが語ること ── 知を開くという思想</h2>
 
     <p>西村は自らの実践を、閉じた世界に留めなかった。「Claude Code 活用マニュアル」として体系化し、公開した。そのマニュアルは、ターミナルの開き方から始まる。非プログラマーがゼロからアプリを作れるようになるまでの全手順が、専門用語を丁寧に噛み砕きながら解説されている。</p>
 
@@ -747,7 +898,7 @@
       <div class="attr">── ミラツク「良い問い」の基準より</div>
     </div>
 
-    <h2>第8章　未来を生きる ── Living Futures</h2>
+    <h2 id="ch8">第8章　未来を生きる ── Living Futures</h2>
 
     <p>この記録を書いている2026年4月21日、協働開始から24日目。126のプロジェクト、54のデータベース、80のカスタムコマンド。しかしgitログのコミットペースは衰える気配がない。今日だけですでに104件のコミットが記録されている。</p>
 
@@ -763,17 +914,18 @@
 
     <p>EMERGING FUTURE ── We already have. 未来は、もうここにある。ターミナルの黒い画面の向こう側に、126のプロジェクトとして、すでに存在している。そしてそれは、これからも生まれ続ける。</p>
 
-  </div>
+  </article>
+  </main>
 
-  <div class="footer-cta">
+  <aside class="footer-cta" aria-label="関連リンク">
     <div class="footer-cta-inner">
       <div class="footer-cta-heading">あなたも始めてみませんか</div>
       <p class="footer-cta-desc">プログラミングの知識は不要。ターミナルの開き方から、AIとの協働で未来を実装するまで ── 実践から生まれたマニュアルを公開しています。</p>
       <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener" class="footer-cta-button">Claude Code 活用マニュアルを読む</a>
     </div>
-  </div>
+  </aside>
 
-  <div class="footer">
+  <footer class="footer">
     <p>
       3週間で126のプロジェクトが生まれた場所 ── AIと人間の協働が拓く未来創造の記録<br>
       2026年4月 NPO法人ミラツク | 記事制作チーム（/article-team）
@@ -781,7 +933,7 @@
     <p style="margin-top:8px;">
       Claude Code 活用マニュアル: <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener">claude-code-manual-app</a>
     </p>
-  </div>
+  </footer>
 
   <!-- Floating CTA bar -->
   <div class="float-bar" id="floatBar">
@@ -792,6 +944,17 @@
 
   <script>
     (function() {
+      // Reading progress bar
+      var progressBar = document.getElementById('readingProgress');
+      function updateProgress() {
+        var scrollPct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        var pct = Math.min(Math.round(scrollPct * 100), 100);
+        progressBar.style.width = pct + '%';
+        progressBar.setAttribute('aria-valuenow', pct);
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+
+      // Floating CTA bar
       var bar = document.getElementById('floatBar');
       var closeBtn = document.getElementById('floatBarClose');
       var dismissed = false;
