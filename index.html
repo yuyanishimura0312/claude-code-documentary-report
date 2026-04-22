@@ -419,31 +419,52 @@
       padding: 0 32px;
     }
     .footer-cta-inner {
-      background: linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
+      border: 1.5px solid var(--border);
       border-radius: 12px;
       padding: 48px 40px;
       text-align: center;
-      color: #fff;
+      background: var(--surface);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-cta-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brown), var(--gold), var(--brown));
+    }
+    .footer-cta-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
     .footer-cta-heading {
       font-family: 'Noto Serif JP', Georgia, serif;
       font-size: 22px;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       line-height: 1.5;
+      color: var(--text);
     }
     .footer-cta-desc {
       font-size: 14.5px;
       line-height: 1.8;
-      opacity: .9;
+      color: var(--text-2);
       max-width: 480px;
       margin: 0 auto 28px;
     }
     .footer-cta-button {
       display: inline-block;
       padding: 14px 40px;
-      background: var(--gold);
-      color: var(--brown-dark);
+      background: var(--brown);
+      color: #fff;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
@@ -452,9 +473,15 @@
       transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
     }
     .footer-cta-button:hover {
-      background: #ddb57e;
+      background: var(--brown-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      box-shadow: 0 8px 24px rgba(61,46,34,.15);
+    }
+    .footer-cta-meta {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-3);
+      line-height: 1.6;
     }
     @media (max-width: 640px) {
       .footer-cta { padding: 0 20px; }
@@ -620,7 +647,7 @@
       プログラミング未経験のNPO代表が、Claude Codeとの対話を通じて3週間で126のプロジェクトを生み出した。3,271回のコミット、1,450万行のコード、350万行を超えるデータベース。そこで起きていたのは、「まだ言語化されていない未来」を形にする知的冒険だった。
     </p>
     <div class="hero-meta">
-      2026年4月<span>|</span>NPO法人ミラツク<span>|</span>西村勇也
+      2026年4月<span>|</span>NPO法人ミラツク<span>|</span>西村勇哉 + Claude Code
     </div>
     <div class="hero-divider"></div>
   </header>
@@ -919,16 +946,18 @@
 
   <aside class="footer-cta" aria-label="関連リンク">
     <div class="footer-cta-inner">
-      <div class="footer-cta-heading">あなたも始めてみませんか</div>
-      <p class="footer-cta-desc">プログラミングの知識は不要。ターミナルの開き方から、AIとの協働で未来を実装するまで ── 実践から生まれたマニュアルを公開しています。</p>
+      <div class="footer-cta-label">Next Step</div>
+      <div class="footer-cta-heading">この実践の方法論を公開しています</div>
+      <p class="footer-cta-desc">プログラミングの知識は不要。ターミナルの開き方から、126のプロジェクトを支えた実践テクニックまで ── AIとの協働で未来を実装するためのマニュアルです。</p>
       <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener" class="footer-cta-button">Claude Code 活用マニュアルを読む</a>
+      <div class="footer-cta-meta">環境準備 / サービス接続 / アプリの作成 / トラブルシューティング / 上級テクニック / 実践ワークフロー</div>
     </div>
   </aside>
 
   <footer class="footer">
     <p>
       3週間で126のプロジェクトが生まれた場所 ── AIと人間の協働が拓く未来創造の記録<br>
-      2026年4月 NPO法人ミラツク | 記事制作チーム（/article-team）
+      2026年4月 NPO法人ミラツク | 西村勇哉 + Claude Code（Anthropic）
     </p>
     <p style="margin-top:8px;">
       Claude Code 活用マニュアル: <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener">claude-code-manual-app</a>
