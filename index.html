@@ -313,11 +313,167 @@
       .pullquote { margin: 32px 0; padding: 24px; }
     }
 
+    /* Manual CTA - Inline callout */
+    .manual-cta {
+      margin: 48px -16px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, rgba(206,162,111,.08) 0%, rgba(122,64,51,.06) 100%);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .manual-cta-body { flex: 1; }
+    .manual-cta-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .manual-cta-text {
+      font-size: 14.5px;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .manual-cta-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      background: var(--brown);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .manual-cta-btn:hover {
+      background: var(--brown-dark);
+      transform: translateY(-1px);
+    }
+    @media (max-width: 640px) {
+      .manual-cta { flex-direction: column; margin: 32px 0; padding: 24px; gap: 16px; }
+      .manual-cta-btn { align-self: flex-start; }
+    }
+
+    /* Footer CTA section */
+    .footer-cta {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .footer-cta-inner {
+      background: linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
+      border-radius: 12px;
+      padding: 48px 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .footer-cta-heading {
+      font-family: 'Noto Serif JP', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .footer-cta-desc {
+      font-size: 14.5px;
+      line-height: 1.8;
+      opacity: .9;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+    .footer-cta-button {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--gold);
+      color: var(--brown-dark);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+    }
+    .footer-cta-button:hover {
+      background: #ddb57e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+    @media (max-width: 640px) {
+      .footer-cta { padding: 0 20px; }
+      .footer-cta-inner { padding: 36px 24px; }
+      .footer-cta-heading { font-size: 19px; }
+    }
+
+    /* Floating bottom bar */
+    .float-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(253,250,247,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 -4px 16px rgba(61,46,34,.06);
+    }
+    .float-bar.visible { transform: translateY(0); }
+    .float-bar-text {
+      font-size: 13px;
+      color: var(--text-2);
+      font-weight: 500;
+    }
+    .float-bar-link {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--brown);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: background .2s ease;
+    }
+    .float-bar-link:hover { background: var(--brown-dark); }
+    .float-bar-close {
+      background: none;
+      border: none;
+      color: var(--text-3);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      opacity: .6;
+      transition: opacity .2s;
+    }
+    .float-bar-close:hover { opacity: 1; }
+    @media (max-width: 640px) {
+      .float-bar { padding: 10px 16px; gap: 10px; }
+      .float-bar-text { font-size: 12px; }
+    }
+
     @media print {
       body { font-size: 11pt; }
       .hero { padding: 24px 0; }
       .article { max-width: 100%; padding: 0; }
       .stat-card, .feature-card, .pullquote { break-inside: avoid; }
+      .float-bar, .footer-cta { display: none; }
     }
   </style>
 </head>
@@ -578,6 +734,14 @@
 
     <p>このマニュアルの存在は、単なるハウツー文書以上の意味を持つ。ミラツクの未来予測資料にはすべて「SOME RIGHTS RESERVED」と記されている。知は共有されるべきものだという信念。非プログラマーがAIで未来を実装できる── その可能性を、実践の裏づけとともに提示する。それ自体が、ミラツクという知識運動体の活動そのものだ。</p>
 
+    <div class="manual-cta">
+      <div class="manual-cta-body">
+        <div class="manual-cta-label">Open Manual</div>
+        <p class="manual-cta-text">この記録の方法論は「Claude Code 活用マニュアル」として公開されています。ターミナルの開き方から、126のプロジェクトを支えた実践テクニックまで。</p>
+      </div>
+      <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener" class="manual-cta-btn">マニュアルを読む</a>
+    </div>
+
     <div class="pullquote">
       <p>考えるとワクワクするか。自分と社会を接続できる切り口を持つか。見え始めている未来への加速を促すか。100年後に取り組んでおいてよかったと判断できるか。</p>
       <div class="attr">── ミラツク「良い問い」の基準より</div>
@@ -601,15 +765,61 @@
 
   </div>
 
+  <div class="footer-cta">
+    <div class="footer-cta-inner">
+      <div class="footer-cta-heading">あなたも始めてみませんか</div>
+      <p class="footer-cta-desc">プログラミングの知識は不要。ターミナルの開き方から、AIとの協働で未来を実装するまで ── 実践から生まれたマニュアルを公開しています。</p>
+      <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener" class="footer-cta-button">Claude Code 活用マニュアルを読む</a>
+    </div>
+  </div>
+
   <div class="footer">
     <p>
       3週間で126のプロジェクトが生まれた場所 ── AIと人間の協働が拓く未来創造の記録<br>
       2026年4月 NPO法人ミラツク | 記事制作チーム（/article-team）
     </p>
     <p style="margin-top:8px;">
-      Claude Code 活用マニュアル: <a href="https://claude-code-manual-app.vercel.app/" target="_blank">claude-code-manual-app</a>
+      Claude Code 活用マニュアル: <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener">claude-code-manual-app</a>
     </p>
   </div>
+
+  <!-- Floating CTA bar -->
+  <div class="float-bar" id="floatBar">
+    <span class="float-bar-text">この実践の方法論を公開しています</span>
+    <a href="https://claude-code-manual-app.vercel.app/index.html" target="_blank" rel="noopener" class="float-bar-link">マニュアルを読む</a>
+    <button class="float-bar-close" id="floatBarClose" aria-label="閉じる">&times;</button>
+  </div>
+
+  <script>
+    (function() {
+      var bar = document.getElementById('floatBar');
+      var closeBtn = document.getElementById('floatBarClose');
+      var dismissed = false;
+      var shown = false;
+
+      function onScroll() {
+        if (dismissed) return;
+        var scrollPct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        if (scrollPct > 0.35 && !shown) {
+          bar.classList.add('visible');
+          shown = true;
+        }
+        // Hide near footer CTA to avoid overlap
+        if (scrollPct > 0.92 && shown) {
+          bar.classList.remove('visible');
+        } else if (scrollPct <= 0.92 && shown && !dismissed) {
+          bar.classList.add('visible');
+        }
+      }
+
+      closeBtn.addEventListener('click', function() {
+        bar.classList.remove('visible');
+        dismissed = true;
+      });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
 
 </body>
 </html>
